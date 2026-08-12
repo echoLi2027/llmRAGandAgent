@@ -1,5 +1,6 @@
 .env
 __pycache__/
+chat_history/
 .idea/
 .venv/
 venv/
