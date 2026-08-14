@@ -1,0 +1,9 @@
+{
+    "name": "Jay Chow",
+    "age": 11,
+    "hobby": ["singing", "dancing", "RAP"],
+    "other": {
+        "addr": "Shenzhen",
+        "tel": "12332112321"
+    }
+}

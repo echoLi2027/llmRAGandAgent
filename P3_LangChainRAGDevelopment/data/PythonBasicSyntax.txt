@@ -1,0 +1,841 @@
+## I. Python Environment and Running Programs
+1.  Python interpreter: CPython is the most common (official default). Enter the interactive environment by typing python (Windows) / python3 (Linux/Mac) in the command line
+2.  Ways to run a program:
+    - Interactive environment: type code and press Enter to execute directly, suitable for quick tests
+    - Script file: write code into a .py file, then run python filename.py (Windows) / python3 filename.py (Linux/Mac) in the command line
+3.  Comments: explanatory text that is not executed, used to improve readability
+    - Single-line comment: starts with #, example: # this is a single-line comment
+    - Multi-line comment: wrapped in triple single quotes ''' or triple double quotes """, example:
+'''
+This is a multi-line comment
+Line one
+Line two
+'''
+"""
+This is also a multi-line comment
+It supports line breaks
+"""
+
+## II. Variables and Data Types
+1.  Variable definition: no type declaration needed, just assign directly. Variable names consist of letters, digits, and underscores, cannot start with a digit, are case-sensitive, and cannot use Python keywords
+    - Assignment syntax: variable_name = value, examples: name = "Python", age = 25, score = 98.5
+    - Multiple assignment: a, b, c = 1, 2, 3 (one-to-one correspondence); a = b = c = 10 (all variables get the same value)
+2.  Basic data types
+    - Number types (Number)
+      - Integer (int): positive integers, negative integers, 0, examples: 10, -5, 0
+      - Float (float): numbers with a decimal point, examples: 3.14, -0.99, 10.0
+      - Boolean (bool): only two values, True (equivalent to 1) and False (equivalent to 0), examples: is_ok = True, is_pass = False
+      - Complex (complex): in the form a+bj, example: num = 3+4j
+    - String type (str): a sequence of characters wrapped in single, double, or triple quotes
+      - Examples: s1 = 'hello', s2 = "world", s3 = '''hello python'''
+      - Strings are immutable: once created, individual characters cannot be modified
+    - Container types (basics)
+      - List (list): ordered, mutable, allows duplicates, can store different types, wrapped in [], example: lst = [1, "python", 3.14, True]
+      - Tuple (tuple): ordered, immutable, allows duplicates, can store different types, wrapped in (), example: tup = (2, "java", 9.9)
+      - Dictionary (dict): unordered (ordered by default in Python 3.7+), mutable, stores key-value pairs (key: value), keys are unique and immutable, wrapped in {}, example: dic = {"name": "John", "age": 20}
+      - Set (set): unordered, mutable, no duplicates, wrapped in {} (an empty set must use set(), not {}), example: s = {1, 2, 3, 3} (result is {1,2,3})
+3.  Type conversion
+    - To integer: int(x), examples: int("123") → 123, int(3.99) → 3
+    - To float: float(x), examples: float("3.14") → 3.14, float(10) → 10.0
+    - To string: str(x), examples: str(123) → "123", str(True) → "True"
+    - To list: list(x), example: list((1,2,3)) → [1,2,3]
+    - To tuple: tuple(x), example: tuple([1,2,3]) → (1,2,3)
+    - To set: set(x), example: set([1,1,2]) → {1,2}
+
+## III. Operators
+1.  Arithmetic operators: used for numeric calculations
+    - +: addition, example: 10 + 20 → 30; string/list concatenation, example: "hello" + "world" → "helloworld"
+    - -: subtraction, example: 20 - 10 → 10
+    - *: multiplication, example: 10 * 3 → 30; string/list repetition, example: "ab" * 3 → "ababab"
+    - /: division, result is a float, example: 10 / 3 → 3.3333333333333335
+    - //: floor division (rounds down), examples: 10 // 3 → 3; -10 // 3 → -4
+    - %: modulo (remainder), example: 10 % 3 → 1
+    - **: exponentiation, examples: 2 ** 3 → 8; 10 ** 2 → 100
+2.  Assignment operators: used to assign values to variables
+    - =: basic assignment, example: a = 10
+    - +=: add then assign, example: a += 5 is equivalent to a = a + 5
+    - -=: subtract then assign, example: a -= 5 is equivalent to a = a - 5
+    - *=: multiply then assign, example: a *= 5 is equivalent to a = a * 5
+    - /=: divide then assign, example: a /= 5 is equivalent to a = a / 5
+    - //=: floor-divide then assign, example: a //= 5 is equivalent to a = a // 5
+    - %=: modulo then assign, example: a %= 5 is equivalent to a = a % 5
+    - **=: exponentiate then assign, example: a **= 5 is equivalent to a = a ** 5
+3.  Comparison operators: compare two values, result is a boolean True/False
+    - ==: equal to, examples: 10 == 10 → True; "abc" == "abd" → False
+    - !=: not equal to, example: 10 != 20 → True
+    - >: greater than, example: 20 > 10 → True
+    - <: less than, example: 10 < 20 → True
+    - >=: greater than or equal to, examples: 10 >= 10 → True; 20 >= 15 → True
+    - <=: less than or equal to, examples: 10 <= 20 → True; 15 <= 15 → True
+4.  Logical operators: used for logical judgment (and, or, not)
+    - and: logical AND, true only if all conditions are true, false if any is false, example: (10 > 5) and (20 > 15) → True
+    - or: logical OR, true if any condition is true, false only if all are false, example: (10 > 5) or (20 < 15) → True
+    - not: logical NOT, negation, example: not (10 > 5) → False
+5.  Membership operators: check whether an element is in a container (list, tuple, string, set, dictionary)
+    - in: checks if the element exists, examples: "a" in "abc" → True; 1 in [1,2,3] → True
+    - not in: checks if the element does not exist, examples: "d" not in "abc" → True; 4 not in [1,2,3] → True
+6.  Identity operators: check whether two variables point to the same object in memory
+    - is: checks if they are the same object, example: a = 10; b = 10; a is b → True
+    - is not: checks if they are not the same object, example: a = [1,2]; b = [1,2]; a is not b → True
+
+## IV. Control Flow Statements
+1.  Conditional statements (if-elif-else): execute different code blocks based on conditions
+    - Basic syntax 1 (single condition):
+if condition_expression:
+    indented code block (executed when the condition is True)
+    (Note: Python uses indentation to delimit code blocks, usually 4 spaces; do not mix spaces and tabs)
+    - Example:
+if score >= 60:
+    print("Pass")
+    - Basic syntax 2 (two branches):
+if condition_expression_1:
+    indented code block 1
+else:
+    indented code block 2 (executed when condition_expression_1 is False)
+    - Example:
+if score >= 60:
+    print("Pass")
+else:
+    print("Fail")
+    - Basic syntax 3 (multiple branches):
+if condition_expression_1:
+    indented code block 1
+elif condition_expression_2:
+    indented code block 2
+elif condition_expression_3:
+    indented code block 3
+...
+else:
+    indented code block n (executed when all previous conditions are False)
+    - Example:
+if score >= 90:
+    print("Excellent")
+elif score >= 80:
+    print("Good")
+elif score >= 60:
+    print("Pass")
+else:
+    print("Fail")
+    - Nested conditions: if statements can be nested inside if-elif-else; pay attention to indentation levels
+    if a > 10:
+        if a < 20:
+            print("a is between 10 and 20")
+        else:
+            print("a is greater than or equal to 20")
+    else:
+        print("a is less than or equal to 10")
+2.  Loop statements: repeatedly execute a block of code
+    - for loop: used to iterate over iterable objects (lists, tuples, strings, dictionaries, etc.)
+      - Basic syntax:
+for variable_name in iterable:
+    indented loop body
+      - Example 1 (iterating over a list):
+lst = [1,2,3,4]
+for num in lst:
+    print(num)
+      - Example 2 (iterating over a string):
+s = "python"
+for char in s:
+    print(char)
+      - Example 3 (with the range() function: generates an integer sequence, range(start, end, step), start defaults to 0, step defaults to 1, end is excluded)
+for i in range(5):  # 0,1,2,3,4
+    print(i)
+for i in range(2, 8):  # 2,3,4,5,6,7
+    print(i)
+for i in range(0, 10, 2):  # 0,2,4,6,8
+    print(i)
+      - Example 4 (iterating over a dictionary):
+dic = {"name": "John", "age": 20}
+for key in dic:  # iterate over keys
+    print(key)
+for value in dic.values():  # iterate over values
+    print(value)
+for key, value in dic.items():  # iterate over key-value pairs
+    print(key, value)
+    - while loop: continues looping based on a condition; the condition is checked first, then the block executes
+      - Basic syntax:
+while condition_expression:
+    indented loop body
+    (Note: set a termination condition to avoid infinite loops)
+      - Example 1 (basic loop):
+count = 0
+while count < 5:
+    print(count)
+    count += 1  # termination: count increments to 5, condition becomes false
+      - Example 2 (infinite loop, terminated with break):
+while True:
+    s = input("Enter something (type quit to exit): ")
+    if s == "quit":
+        break
+    print("You entered:", s)
+    - Loop control statements:
+      - break: immediately terminates the current loop and exits the loop body, skipping the remaining iterations
+        Example:
+for i in range(10):
+    if i == 5:
+        break
+    print(i)  # prints 0,1,2,3,4
+      - continue: skips the rest of the current iteration and goes straight to the next one
+        Example:
+for i in range(10):
+    if i == 5:
+        continue
+    print(i)  # prints 0,1,2,3,4,6,7,8,9
+      - else: when the loop ends normally (not terminated by break), the else block executes
+        Example:
+for i in range(5):
+    print(i)
+else:
+    print("Loop finished normally")
+
+## V. String Operations
+1.  String indexing and slicing: indexing gets a single character, slicing gets a substring
+    - Indexing: forward indexing (starts at 0, left to right) and backward indexing (starts at -1, right to left)
+      Example: s = "python"
+      s[0] → "p" (1st character, forward index)
+      s[-1] → "n" (1st character, backward index)
+      s[3] → "h"; s[-3] → "h"
+    - Slicing syntax: string[start:end:step], start defaults to 0, end defaults to the string length, step defaults to 1, the character at end is excluded
+      Example: s = "python"
+      s[0:3] → "pyt" (index 0 to 2)
+      s[2:] → "thon" (index 2 to the end)
+      s[:4] → "pyth" (start to index 3)
+      s[1:5:2] → "yh" (index 1 to 4, step 2)
+      s[::-1] → "nohtyp" (reverses the string)
+2.  Common string methods
+    - len(s): get the string length, example: len("python") → 6
+    - s.lower(): convert to all lowercase, example: "Python".lower() → "python"
+    - s.upper(): convert to all uppercase, example: "Python".upper() → "PYTHON"
+    - s.strip(): remove leading/trailing whitespace (or specified characters), examples: "  hello  ".strip() → "hello"; "###python###".strip("#") → "python"
+    - s.split(sep): split the string by the given separator, returns a list, examples: "a,b,c".split(",") → ["a","b","c"]; "hello world".split() → ["hello","world"]
+    - s.join(iter): join the elements of an iterable with the string, example: ",".join(["a","b","c"]) → "a,b,c"
+    - s.replace(old, new): replace old characters/substrings with new ones, example: "hello world".replace("world", "python") → "hello python"
+    - s.find(sub): find the index of the first occurrence of a substring, returns -1 if not found, example: "python".find("th") → 2
+    - s.count(sub): count occurrences of a substring, example: "ababab".count("ab") → 3
+    - s.startswith(prefix): check whether the string starts with the given prefix, returns a boolean, example: "python".startswith("py") → True
+    - s.endswith(suffix): check whether the string ends with the given suffix, returns a boolean, example: "python".endswith("on") → True
+
+## VI. List Operations
+1.  List indexing and slicing: same usage as strings; list slicing returns a new list and supports modification
+    - Indexing: lst = [1,2,3,4,5]
+      lst[0] → 1; lst[-1] → 5
+    - Slicing: lst[1:4] → [2,3,4]; lst[::-1] → [5,4,3,2,1]
+    - Slice assignment: lst[1:3] = [6,7] → lst becomes [1,6,7,4,5]
+2.  Common list methods
+    - len(lst): get the list length, example: len([1,2,3]) → 3
+    - lst.append(x): add one element to the end of the list, example: lst = [1,2]; lst.append(3) → [1,2,3]
+    - lst.extend(iter): extend the list with the elements of an iterable, example: lst = [1,2]; lst.extend([3,4]) → [1,2,3,4]
+    - lst.insert(index, x): insert an element at the given index, example: lst = [1,3]; lst.insert(1, 2) → [1,2,3]
+    - lst.remove(x): remove the first occurrence of the given element, example: lst = [1,2,3,2]; lst.remove(2) → [1,3,2]
+    - lst.pop(index): remove the element at the given index (defaults to the last one) and return it, example: lst = [1,2,3]; lst.pop() → 3, lst becomes [1,2]
+    - lst.clear(): remove all elements, example: lst = [1,2,3]; lst.clear() → []
+    - lst.index(x): find the index of the first occurrence of an element, raises an error if not found, example: [1,2,3].index(2) → 1
+    - lst.count(x): count occurrences of an element, example: [1,2,2,3].count(2) → 2
+    - lst.sort(): sort elements in ascending order (in place), example: lst = [3,1,2]; lst.sort() → [1,2,3]
+    - lst.reverse(): reverse the elements (in place), example: lst = [1,2,3]; lst.reverse() → [3,2,1]
+
+## VII. Dictionary Operations
+1.  Accessing and modifying key-value pairs
+    - Access a value: by key, syntax: dic[key], example: dic = {"name": "John"}; dic["name"] → "John"
+    - Modify a value: by key, syntax: dic[key] = new_value, example: dic["name"] = "Mike" → dic becomes {"name": "Mike"}
+    - Add a key-value pair: syntax: dic[new_key] = value, example: dic["age"] = 20 → dic becomes {"name": "Mike", "age": 20}
+2.  Common dictionary methods
+    - len(dic): get the number of key-value pairs, example: len({"name": "John", "age": 20}) → 2
+    - dic.keys(): return an iterable of all keys, example: dic.keys() → dict_keys(['name', 'age'])
+    - dic.values(): return an iterable of all values, example: dic.values() → dict_values(['John', 20])
+    - dic.items(): return an iterable of all key-value pairs, example: dic.items() → dict_items([('name', 'John'), ('age', 20)])
+    - dic.get(key, default): get the value for a key, returns the default (None if unspecified) when the key does not exist, examples: dic.get("name") → "John"; dic.get("gender", "unknown") → "unknown"
+    - dic.pop(key, default): remove the key-value pair for the given key and return its value; returns the default if the key does not exist (raises an error if no default), example: dic.pop("age") → 20
+    - dic.clear(): remove all key-value pairs, example: dic.clear() → {}
+    - dic.update(new_dic): update the dictionary with a new one — existing keys get overwritten, new keys get added, example: dic.update({"age": 21, "gender": "male"})
+
+## VIII. Functions
+1.  Function definition and calling
+    - Definition syntax:
+def function_name(parameter_list):
+    indented function body
+    [return return_value]
+    (Notes: def is a keyword; function names follow variable naming rules; the parameter list is optional; return is optional — without return, None is returned by default)
+    - Example 1 (no parameters, no return value):
+def say_hello():
+    print("Hello Python!")
+    - Example 2 (with parameters and a return value):
+def add(a, b):
+    result = a + b
+    return result
+    - Function call: syntax: function_name(argument_list), example:
+say_hello()  # call a function with no parameters
+sum_result = add(10, 20)  # call a function with parameters and receive the return value
+print(sum_result)
+2.  Function parameters
+    - Positional arguments: passed in the order parameters are defined, must match one-to-one and in count, example: add(10, 20) (10 maps to a, 20 maps to b)
+    - Keyword arguments: passed by parameter name, order can be changed, example: add(b=20, a=10)
+    - Default parameters: give a parameter a default value in the definition; it can be omitted when calling (the default is used), example:
+def power(x, n=2):
+    return x ** n
+power(3) → 9 (uses default n=2)
+power(3, 3) → 27 (overrides the default)
+    - Variadic parameters:
+      - *args: receives any number of positional arguments, packed into a tuple, example:
+def sum_all(*args):
+    total = 0
+    for num in args:
+        total += num
+    return total
+sum_all(1,2,3) → 6; sum_all(1,2,3,4,5) → 15
+      - **kwargs: receives any number of keyword arguments, packed into a dictionary, example:
+def print_info(**kwargs):
+    for key, value in kwargs.items():
+        print(key, ":", value)
+print_info(name="John", age=20)
+3.  return statement: returns the function's result; the function ends immediately when return executes; can return a single value or multiple values (multiple values are packed into a tuple)
+    Example:
+def func():
+    return 1, 2, 3  # equivalent to return (1,2,3)
+a, b, c = func()  # unpacking, a=1, b=2, c=3
+
+## IX. Modules and Packages
+1.  Module: a .py file is a module, used to encapsulate related variables, functions, classes, etc., improving code reuse
+    - Importing a module:
+      - import module_name, example: import math (imports the math module)
+      - Import with an alias, example: import math as m (alias m, for convenience)
+      - Import specific items from a module, example: from math import pi, sqrt (imports pi and the sqrt function)
+      - Import everything from a module, example: from math import * (not recommended, prone to naming conflicts)
+    - Using module contents:
+      - Whole-module import: module_name.variable/function, examples: math.pi → 3.141592653589793; math.sqrt(16) → 4.0
+      - Specific import: use the variable/function directly, examples: pi → 3.141592653589793; sqrt(16) → 4.0
+2.  Package: a folder containing an __init__.py file, used to organize multiple related modules and avoid module name conflicts
+    - Importing modules from a package:
+      - import package_name.module_name
+      - from package_name import module_name
+      - from package_name.module_name import function/variable
+
+## X. Exception Handling
+1.  Exception: an error during program execution (e.g., syntax errors, index out of range, missing keys); unhandled exceptions terminate the program
+2.  Exception handling syntax (try-except-else-finally):
+    try:
+        indented code block that may raise an exception
+    except ExceptionType1:
+        indented handler for exception 1
+    except ExceptionType2:
+        indented handler for exception 2
+    except:
+        indented handler for any uncaught exception (catch-all)
+    else:
+        indented block executed when the try block raises no exception
+    finally:
+        indented block that always executes whether or not an exception occurred (e.g., releasing resources)
+3.  Example:
+try:
+    a = 10 / int(input("Please enter a number: "))
+except ZeroDivisionError:
+    print("Error: cannot divide by 0")
+except ValueError:
+    print("Error: please enter a valid integer")
+else:
+    print("Result:", a)
+finally:
+    print("Program finished")
+
+## XI. File Operations
+1.  Opening and closing files
+    - Open a file: the open() function, syntax: file_obj = open(file_path, mode, encoding=None)
+      - file_path: the file path (absolute or relative)
+      - mode: the open mode, commonly:
+        r: read-only mode (default), errors if the file does not exist
+        w: write mode, creates the file if it does not exist, truncates existing content if it does
+        a: append mode, creates the file if it does not exist, appends to the end if it does
+        r+: read-write mode, errors if the file does not exist
+        w+: read-write mode, creates the file if it does not exist, truncates existing content if it does
+        a+: read-write mode, creates the file if it does not exist, appends to the end if it does
+        Modes with b (e.g., rb, wb): binary mode, for reading/writing binary files like images and videos; no encoding needed
+      - encoding: the file encoding, usually utf-8, example: encoding="utf-8"
+    - Close a file: file_obj.close(); files must be closed to release system resources
+2.  Reading and writing files
+    - Reading:
+      - file_obj.read(size): read the given number of bytes (size optional, reads everything by default)
+      - file_obj.readline(): read one line
+      - file_obj.readlines(): read all lines, returns a list with one element per line
+    - Writing:
+      - file_obj.write(content): write the given content (string or binary data)
+      - file_obj.writelines(list): write all elements of a list (elements must be strings)
+3.  Context manager (with statement): closes the file automatically, no manual close() needed — recommended
+    Example 1 (reading a file):
+with open("test.txt", "r", encoding="utf-8") as f:
+    content = f.read()
+    print(content)
+    Example 2 (writing a file):
+with open("test.txt", "w", encoding="utf-8") as f:
+    f.write("Hello Python!\n")
+    f.writelines(["Line one\n", "Line two\n"])
+    Example 3 (appending to a file):
+with open("test.txt", "a", encoding="utf-8") as f:
+    f.write("This is appended content")
+
+# Python Advanced Syntax (plain text format, can be copied and saved as TXT directly)
+## XII. Object-Oriented Programming (OOP)
+1.  Basic concepts of classes and objects
+    - Class (class): an abstract template for objects, defining their attributes and methods
+    - Object: an instance of a class; concrete objects are created from the class
+    - Syntax:
+class ClassName:
+    # Class attribute: belongs to the class itself, shared by all instances
+    class_attribute = value
+
+    # Initializer: called automatically when creating an object, used to initialize instance attributes
+    def __init__(self, parameter_list):
+        # Instance attribute: belongs to a single object, each instance has its own
+        self.instance_attribute = parameter_value
+
+    # Instance method: the first parameter must be self, representing the current object
+    def method_name(self, parameter_list):
+        method body
+
+    # Class method: the first parameter must be cls, representing the class itself, decorated with @classmethod
+    @classmethod
+    def class_method_name(cls, parameter_list):
+        method body
+
+    # Static method: no default parameter, independent of class and instances, decorated with @staticmethod
+    @staticmethod
+    def static_method_name(parameter_list):
+        method body
+    - Example:
+class Person:
+    # Class attribute
+    species = "Human"
+
+    # Initializer
+    def __init__(self, name, age):
+        self.name = name  # instance attribute
+        self.age = age
+
+    # Instance method
+    def introduce(self):
+        print(f"My name is {self.name}, I am {self.age} years old")
+
+    # Class method
+    @classmethod
+    def get_species(cls):
+        return cls.species
+
+    # Static method
+    @staticmethod
+    def is_adult(age):
+        return age >= 18
+
+# Create objects (instantiation)
+p1 = Person("John", 20)
+p2 = Person("Mike", 17)
+
+# Access instance attributes and methods
+print(p1.name)  # prints John
+p1.introduce()  # prints My name is John, I am 20 years old
+
+# Access class attributes and class methods
+print(Person.species)  # prints Human
+print(Person.get_species())  # prints Human
+
+# Call the static method
+print(Person.is_adult(20))  # prints True
+print(Person.is_adult(17))  # prints False
+
+2.  The three pillars: encapsulation, inheritance, polymorphism
+    - Encapsulation: hide an object's attributes and methods, accessing them only through public interfaces, improving safety
+      - Private attributes/methods: prefix the name with two underscores __, accessible only inside the class
+      - Example:
+class Student:
+    def __init__(self, name, score):
+        self.name = name
+        self.__score = score  # private attribute
+
+    def get_score(self):  # public interface to read the private attribute
+        return self.__score
+
+    def set_score(self, new_score):  # public interface to modify the private attribute, can add validation
+        if 0 <= new_score <= 100:
+            self.__score = new_score
+        else:
+            print("Score must be between 0 and 100")
+
+s = Student("Wendy", 90)
+print(s.get_score())  # prints 90
+s.set_score(95)
+print(s.get_score())  # prints 95
+s.set_score(101)  # prints Score must be between 0 and 100
+
+    - Inheritance: a subclass inherits the attributes and methods of its parent class for code reuse; subclasses can extend or override parent methods
+      - Syntax: class SubClass(ParentClass):
+      - Overriding: the subclass defines a method with the same name as the parent's, replacing it
+      - super(): calls the parent class's methods, often used in subclass initialization
+      - Example:
+# Parent class
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def run(self):
+        print(f"{self.name} is running")
+
+# Subclass inheriting from the parent
+class Dog(Animal):
+    # Override the parent method
+    def run(self):
+        print(f"{self.name} is running fast")
+
+    # Subclass extension method
+    def bark(self):
+        print(f"{self.name} is barking")
+
+class Cat(Animal):
+    def __init__(self, name, color):
+        super().__init__(name)  # call the parent initializer
+        self.color = color  # new subclass attribute
+
+    def run(self):
+        print(f"The {self.color} cat {self.name} is running gracefully")
+
+dog = Dog("Buddy")
+dog.run()  # prints Buddy is running fast
+dog.bark()  # prints Buddy is barking
+
+cat = Cat("Kitty", "white")
+cat.run()  # prints The white cat Kitty is running gracefully
+
+    - Polymorphism: different subclass objects calling the same method show different behavior, relying on inheritance and method overriding
+      - Example:
+def animal_run(animal):
+    animal.run()
+
+animal_run(Dog("Buddy"))  # prints Buddy is running fast
+animal_run(Cat("Kitty", "white"))  # prints The white cat Kitty is running gracefully
+
+3.  Special methods (magic methods)
+    - Start and end with double underscores __, called automatically in specific situations
+    - Common special methods:
+      - __init__: initializes an object
+      - __str__: called when printing an object, returns a string, example:
+class Book:
+    def __init__(self, title):
+        self.title = title
+
+    def __str__(self):
+        return f"Title: {self.title}"
+
+b = Book("Python Programming")
+print(b)  # prints Title: Python Programming
+      - __repr__: called when the console displays an object, used for debugging
+      - __len__: triggered when calling the len() function, example:
+class MyList:
+    def __init__(self, data):
+        self.data = data
+
+    def __len__(self):
+        return len(self.data)
+
+ml = MyList([1,2,3])
+print(len(ml))  # prints 3
+      - __add__: triggered by the + operator, implements object addition, example:
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+
+p1 = Point(1,2)
+p2 = Point(3,4)
+p3 = p1 + p2
+print(p3.x, p3.y)  # prints 4 6
+
+## XIII. Decorators
+1.  Concept: a decorator is a function that enhances another function's behavior without modifying its code, following the open-closed principle
+2.  Basic syntax:
+    - Define a decorator function: it takes the decorated function as a parameter and returns a wrapper function
+    - Use the @decorator_name syntax above the decorated function's definition
+    - Example 1 (decorator without arguments):
+# Define a decorator: measure a function's execution time
+import time
+def timer_decorator(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)  # execute the original function
+        end_time = time.time()
+        print(f"{func.__name__} execution time: {end_time - start_time} seconds")
+        return result
+    return wrapper
+
+# Use the decorator
+@timer_decorator
+def my_func():
+    time.sleep(1)
+    print("Function finished")
+
+my_func()  # prints Function finished + execution time
+
+    - Example 2 (decorator with arguments): requires three nested functions; the outermost function receives the decorator arguments
+def repeat_decorator(num):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for _ in range(num):
+                result = func(*args, **kwargs)
+            return result
+        return wrapper
+    return decorator
+
+# Use the parameterized decorator
+@repeat_decorator(3)
+def say_hi():
+    print("Hi!")
+
+say_hi()  # prints Hi! 3 times in a row
+
+3.  Common built-in decorators:
+    - @classmethod: defines a class method
+    - @staticmethod: defines a static method
+    - @property: turns a method into an attribute, called without parentheses, example:
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.__age = age
+
+    @property
+    def age(self):
+        return self.__age
+
+    @age.setter
+    def age(self, new_age):
+        if 0 <= new_age <= 120:
+            self.__age = new_age
+        else:
+            print("Invalid age")
+
+p = Person("John", 20)
+print(p.age)  # calls the @property-decorated method, no parentheses, prints 20
+p.age = 25  # calls the @age.setter-decorated method, modifies the attribute
+print(p.age)  # prints 25
+
+## XIV. Iterators and Generators
+1.  Iterators
+    - Iterable: an object that can be traversed by a for loop, such as lists, strings, dictionaries, etc.; implements the __iter__ method
+    - Iterator: an object implementing both __iter__ and __next__; call next() to get the next element; raises StopIteration when exhausted
+    - Conversion: use the iter() function to turn an iterable into an iterator
+    - Example:
+lst = [1,2,3]
+it = iter(lst)  # convert to an iterator
+print(next(it))  # prints 1
+print(next(it))  # prints 2
+print(next(it))  # prints 3
+# print(next(it))  # raises StopIteration
+
+    - Custom iterator:
+class MyIterator:
+    def __init__(self, max_num):
+        self.max_num = max_num
+        self.current = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.current < self.max_num:
+            self.current += 1
+            return self.current
+        else:
+            raise StopIteration
+
+mi = MyIterator(3)
+for num in mi:
+    print(num)  # prints 1 2 3
+
+2.  Generators
+    - Concept: a special kind of iterator defined with the yield keyword; no need to implement __iter__ and __next__ manually, more concise
+    - How it works: calling a generator function does not execute it immediately — it returns a generator object; each next() call or for-loop step runs until yield, pauses, returns the yielded value, and resumes from there next time
+    - Example 1 (generator function):
+def my_generator(max_num):
+    current = 1
+    while current <= max_num:
+        yield current  # pause and return the value
+        current += 1
+
+gen = my_generator(3)
+print(next(gen))  # prints 1
+print(next(gen))  # prints 2
+print(next(gen))  # prints 3
+
+    - Example 2 (generator expression): syntax similar to a list comprehension but with () instead of [], saves memory (elements are not generated all at once)
+gen_expr = (x*2 for x in range(3))
+for num in gen_expr:
+    print(num)  # prints 0 2 4
+
+## XV. Context Managers
+1.  Concept: used to manage resources (files, network connections, database connections), ensuring resources are released automatically after use, avoiding leaks
+2.  Implementations
+    - Approach 1: a class implementing __enter__ and __exit__
+      - __enter__: called when entering the context, returns the resource object
+      - __exit__: called when exiting the context, handles exceptions and resource release
+      - Example:
+class MyFile:
+    def __init__(self, file_path, mode):
+        self.file_path = file_path
+        self.mode = mode
+        self.file = None
+
+    def __enter__(self):
+        self.file = open(self.file_path, self.mode, encoding="utf-8")
+        return self.file
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.file:
+            self.file.close()
+        # Returning True suppresses the exception, False propagates it
+        return False
+
+# Use the custom context manager
+with MyFile("test.txt", "w") as f:
+    f.write("Hello context manager")
+
+    - Approach 2: use the @contextmanager decorator from the contextlib module, implemented with a generator function, more concise
+from contextlib import contextmanager
+
+@contextmanager
+def my_open(file_path, mode):
+    f = open(file_path, mode, encoding="utf-8")
+    try:
+        yield f  # everything before yield is __enter__ logic, everything after is __exit__ logic
+    finally:
+        f.close()
+
+with my_open("test.txt", "r") as f:
+    print(f.read())
+
+## XVI. Multithreading and Multiprocessing
+1.  Multithreading: suitable for IO-bound tasks (file reads/writes, network requests); limited by the GIL (Global Interpreter Lock) in Python — only one thread executes Python bytecode at a time
+    - Uses the threading module
+    - Example:
+import threading
+import time
+
+def task(name):
+    print(f"Task {name} started")
+    time.sleep(2)  # simulate an IO operation
+    print(f"Task {name} finished")
+
+# Create threads
+t1 = threading.Thread(target=task, args=("A",))
+t2 = threading.Thread(target=task, args=("B",))
+
+# Start the threads
+t1.start()
+t2.start()
+
+# Wait for the threads to finish
+t1.join()
+t2.join()
+print("All tasks done")
+
+2.  Multiprocessing: suitable for CPU-bound tasks (numerical computation), not limited by the GIL, implemented with the multiprocessing module
+    - Example:
+from multiprocessing import Process
+import time
+
+def task(name):
+    print(f"Task {name} started")
+    time.sleep(2)
+    print(f"Task {name} finished")
+
+if __name__ == "__main__":  # this guard is required on Windows
+    p1 = Process(target=task, args=("A",))
+    p2 = Process(target=task, args=("B",))
+
+    p1.start()
+    p2.start()
+
+    p1.join()
+    p2.join()
+    print("All tasks done")
+
+## XVII. Regular Expressions
+1.  Concept: patterns for matching, searching, and replacing strings, implemented with the re module
+2.  Common functions
+    - re.match(pattern, string): matches from the beginning of the string; returns a match object on success, otherwise None
+    - re.search(pattern, string): scans the whole string and finds the first match
+    - re.findall(pattern, string): finds all matches, returns a list
+    - re.sub(pattern, repl, string): replaces all matching substrings
+3.  Common metacharacters
+    - .: matches any single character (except the newline \n)
+    - ^: matches the beginning of the string
+    - $: matches the end of the string
+    - *: matches the preceding character 0 or more times
+    - +: matches the preceding character 1 or more times
+    - ?: matches the preceding character 0 or 1 time
+    - []: matches any single character inside the brackets
+    - \d: matches a digit, equivalent to [0-9]
+    - \w: matches a letter, digit, or underscore, equivalent to [a-zA-Z0-9_]
+    - \s: matches whitespace (spaces, tabs, newlines, etc.)
+4.  Example:
+import re
+
+# Match a phone number (11 digits, starting with 1)
+pattern = r"^1\d{10}$"
+print(re.match(pattern, "13812345678"))  # match succeeds
+print(re.match(pattern, "1234567890"))  # match fails
+
+# Extract all numbers
+string = "Age: 20, Height: 180cm"
+print(re.findall(r"\d+", string))  # prints ['20', '180']
+
+# Replace sensitive words
+string = "This product is rubbish"
+print(re.sub(r"rubbish", "**", string))  # prints This product is **
+
+## XVIII. Advanced Data Structures
+1.  Advanced set operations
+    - Intersection: s1 & s2 or s1.intersection(s2)
+    - Union: s1 | s2 or s1.union(s2)
+    - Difference: s1 - s2 or s1.difference(s2)
+    - Symmetric difference: s1 ^ s2 or s1.symmetric_difference(s2)
+    - Example:
+s1 = {1,2,3}
+s2 = {3,4,5}
+print(s1 & s2)  # intersection {3}
+print(s1 | s2)  # union {1,2,3,4,5}
+print(s1 - s2)  # difference {1,2}
+
+2.  Ordered dictionary (OrderedDict): before Python 3.7 dictionaries were unordered; use collections.OrderedDict to guarantee insertion order
+    - Example:
+from collections import OrderedDict
+od = OrderedDict()
+od["a"] = 1
+od["b"] = 2
+od["c"] = 3
+for k, v in od.items():
+    print(k, v)  # prints in insertion order: a 1, b 2, c 3
+
+3.  Counter (Counter): counts occurrences of elements in an iterable, returned in dictionary form
+    - Example:
+from collections import Counter
+lst = [1,2,2,3,3,3]
+cnt = Counter(lst)
+print(cnt)  # prints Counter({3: 3, 2: 2, 1: 1})
+print(cnt.most_common(2))  # prints the 2 most common elements [(3, 3), (2, 2)]
+
+4.  Named tuple (namedtuple): creates tuples with named fields for better readability
+    - Example:
+from collections import namedtuple
+Point = namedtuple("Point", ["x", "y"])
+p = Point(1, 2)
+print(p.x)  # prints 1
+print(p.y)  # prints 2
+
+5.  Double-ended queue (deque): efficiently adds and removes elements at both ends, faster than a list for this, suitable for queue and stack scenarios
+    - Example:
+from collections import deque
+dq = deque([1,2,3])
+dq.append(4)  # add at the right end
+dq.appendleft(0)  # add at the left end
+print(dq)  # prints deque([0, 1, 2, 3, 4])
+dq.pop()  # remove from the right end
+dq.popleft()  # remove from the left end
+print(dq)  # prints deque([1, 2, 3])
